@@ -8,7 +8,7 @@ class Api_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getApiRecord($url, $data = false,$method) {
+    public function getApiRecord($url, $data,$method) {
 //       print_r($data);exit;
 
         $curl = curl_init();
