@@ -15,7 +15,12 @@
                                 </ul>
                             </div>
                             <div class="page-direction-button">
-                                <a href="<?= base_url().'contact'?>"><i class="fa fa-phone"></i>Contact Us Now</a>
+                                <div class="col-md-8">
+                                    <a href="<?= base_url().'contact'?>"><i class="fa fa-phone"></i>Contact Us Now</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="<?= base_url().'login'?>"><i class="fa fa-user"></i>Login</a>
+                                </div>
                             </div>
                         </div>
                     </div>

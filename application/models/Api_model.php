@@ -8,8 +8,8 @@ class Api_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getApiRecord($url, $data,$method) {
-//       print_r($data);exit;
+    public function getApiRecord($method, $url, $data) {
+       //print_r($data);exit;
 
         $curl = curl_init();
 
@@ -25,7 +25,8 @@ class Api_model extends CI_Model {
             CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
                 "content-type: application/x-www-form-urlencoded",
-                "postman-token: 7b42cfbf-3f25-bab3-7786-096fa475403e"
+                //"postman-token: 7b42cfbf-3f25-bab3-7786-096fa475403e"
+                "postman-token: qcWZ0Ben4JMVzX0QQx3Yiv2WnID8eFMM"
             ),
         ));
 
@@ -35,7 +36,7 @@ class Api_model extends CI_Model {
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            echo $response;
+            return $response;
         }
     }
 
