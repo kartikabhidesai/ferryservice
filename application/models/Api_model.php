@@ -8,8 +8,8 @@ class Api_model extends CI_Model {
         parent::__construct();
     }
 
-    public function getApiRecord($method, $url, $data) {
-       //print_r($data);exit;
+    public function checkAuthentication($method, $url, $data) {
+//       print_r($data);exit;
 
         $curl = curl_init();
 
@@ -33,6 +33,37 @@ class Api_model extends CI_Model {
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            return $response;
+        }
+    }
+    
+    public function getApiRecord($method, $url, $data) {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://indigo.kcits.in/api/api/GetStops",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_POSTFIELDS => "token=0fWbvGEoCuCfnFRIX9sUweQsKUmk1Vct",
+        CURLOPT_HTTPHEADER => array(
+                "authorization: v4jRRxqgkzWYnLLnsTFPgKBXl8ZDQG6i", 
+                "cache-control: no-cache",
+                "postman-token: 869e9fce-6798-9359-200f-58066e80214f"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {

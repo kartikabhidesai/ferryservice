@@ -57,7 +57,7 @@ $route['contact'] = 'front/contact';
 $route['login'] = 'account/login';
 $route['home'] = 'account/home';
 $route['dashboard'] = 'account/dashboard';
-$route['detail'] = 'account/detail';
+$route['trip-detail'] = 'account/detail';
 /* END BY JIGNESH */
 
 $route['404_override'] = '';

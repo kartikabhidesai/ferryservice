@@ -73,7 +73,7 @@ class Account extends CI_Controller {
         $data['var_meta_description'] = 'dashboard';
         $data['var_meta_keyword'] = 'dashboard';
         
-        $stopList = $this->Account_model->getStops();
+        //$stopList = $this->Account_model->getStops();
         $data['js'] = array(
            
         );
@@ -90,6 +90,7 @@ class Account extends CI_Controller {
             
         );
         if ($this->input->post()) {
+            redirect('trip-detail');
             //echo "<pre>";print_r($this->input->post());exit;
             
             $result = $this->Account_model->getTripData($this->input->post());

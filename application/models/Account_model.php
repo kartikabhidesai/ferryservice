@@ -12,7 +12,7 @@ class Account_model extends CI_Model {
             //$dataArr = "userName=".$username."&password=".$password."&agentID=8ef79695-4fe4-4f10-8065-f81869504685";
             $dataArr = "userName=Indigo&password=Indigo%40123&agentID=8ef79695-4fe4-4f10-8065-f81869504685";
             $url = "http://indigo.kcits.in/api/api/Authenticate";
-            $resultData = $this->Api_model->getApiRecord('POST', $url, $dataArr);
+            $resultData = $this->Api_model->checkAuthentication('POST', $url, $dataArr);
             $result = json_decode($resultData, true);
             //echo "<pre>";print_r($result);exit;
 
@@ -43,7 +43,8 @@ class Account_model extends CI_Model {
         //$url = "http://indigo.kcits.in/api/api/GetStops";
         $resultData = $this->Api_model->getApiRecord('GET', $url, $dataArr);
         $result = json_decode($resultData, true);
-        echo "<pre>";print_r($result);exit;
+        //echo "<pre>";print_r($result);exit;
+        return $result;
     }
     
     function getTripData($data){
@@ -53,12 +54,15 @@ class Account_model extends CI_Model {
         $departure = $data['departure'];
         
         if(!empty($sourceId) && !empty($destinationId) && !empty($departure)){
-            $dataArr = "departureDate=31/03/2018&destinationID=2&sourceID=1";
-            //$result = "http://indigo.kcits.in/api/api/GetTrips?departureDate=31/03/2018&destinationID=2&sourceID=1";
-            $url = "http://indigo.kcits.in/api/api/GetTrips";
+            $dataArr = "";
+            //$dataArr = "departureDate=31/03/2018&destinationID=2&sourceID=1";
+            //$url = "http://indigo.kcits.in/api/api/GetTrips?departureDate=31/03/2018&destinationID=2&sourceID=1";
+            //$url = "http://test.indigoseaways.com/api/api/GetTrips?departureDate=".$departure."&destinationID=".$destinationId."&sourceID=".$sourceId;
+            $url = "http://test.indigoseaways.com/api/api/GetTrips?departureDate=31/03/2018&destinationID=2&sourceID=1";
             $resultData = $this->Api_model->getApiRecord('GET', $url, $dataArr);
             $result = json_decode($resultData, true);
-            echo "<pre>";print_r($result);exit;
+            //echo "<pre>";print_r($result);exit;
+            return $result;
         }
     }
 }
