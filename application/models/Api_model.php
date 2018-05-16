@@ -8,11 +8,11 @@ class Api_model extends CI_Model {
         parent::__construct();
     }
 
-    public function checkAuthentication($method, $url, $data) {
-//       print_r($data);exit;
-
+    public function curlCall($url,$data,$method,$header = '') {
+        
+        $headerArr = implode(',', $header);
         $curl = curl_init();
-
+echo $headerArr;
         curl_setopt_array($curl, array(
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
@@ -25,35 +25,37 @@ class Api_model extends CI_Model {
             CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
                 "content-type: application/x-www-form-urlencoded",
-                //"postman-token: 7b42cfbf-3f25-bab3-7786-096fa475403e"
-                "postman-token: qcWZ0Ben4JMVzX0QQx3Yiv2WnID8eFMM"
+                "postman-token: dac5f6a2-2fcd-2fae-2acf-74c881756b39",
+                $headerArr
             ),
         ));
 
         $response = curl_exec($curl);
         $err = curl_error($curl);
+
         curl_close($curl);
+
         if ($err) {
-            echo "cURL Error #:" . $err;
+            return "cURL Error #:" . $err;
         } else {
-            return $response;
+            return json_decode($response,true);
         }
     }
-    
+
     public function getApiRecord($method, $url, $data) {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://indigo.kcits.in/api/api/GetStops",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_POSTFIELDS => "token=0fWbvGEoCuCfnFRIX9sUweQsKUmk1Vct",
-        CURLOPT_HTTPHEADER => array(
-                "authorization: v4jRRxqgkzWYnLLnsTFPgKBXl8ZDQG6i", 
+            CURLOPT_URL => "http://indigo.kcits.in/api/api/GetStops",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_POSTFIELDS => "token=0fWbvGEoCuCfnFRIX9sUweQsKUmk1Vct",
+            CURLOPT_HTTPHEADER => array(
+                "authorization: v4jRRxqgkzWYnLLnsTFPgKBXl8ZDQG6i",
                 "cache-control: no-cache",
                 "postman-token: 869e9fce-6798-9359-200f-58066e80214f"
             ),
