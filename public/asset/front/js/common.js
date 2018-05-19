@@ -1,15 +1,4 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
-<script src="<?= base_url()?>public/asset/front/js/vendor/bootstrap.min.js"></script>
-
-<script src="<?= base_url()?>public/asset/front/js/datepicker.js"></script>
-<script src="<?= base_url()?>public/asset/front/js/plugins.js"></script>
-<script src="<?= base_url()?>public/asset/front/js/main.js"></script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
+$(document).ready(function() {
         // navigation click actions 
         $('.scroll-link').on('click', function(event) {
             event.preventDefault();
@@ -44,6 +33,3 @@
             }
         };
     }
-</script>
-</body>
-</html>

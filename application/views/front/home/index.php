@@ -1,11 +1,5 @@
 <style>
-    .cusClass{
-        height : 50px !important;
-        width : 80px !important;
-    }
-    .price{
-        display: block;
-    }
+   
 </style>
 <section class="banner" id="top">
     <div class="container">
@@ -20,7 +14,7 @@
                     <div id="tab1">
                         <!--Step 1-->
                         
-                        <div class="submit-form form1">
+                        <div class="submit-form form1 ">
                             <h4>Trip Selection:</h4>
                             <form id="form-submit" action="" method="get">
                                 <div class="row">
@@ -30,11 +24,11 @@
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <label for="round">Round</label>
-                                                    <input type="radio" name="trip" id="round" value="round" required="required" onchange="this.form.()">
+                                                    <input type="radio" name="trip" id="round" value="round" required="required">
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <label for="oneway">Oneway</label>
-                                                    <input type="radio" name="trip" id="oneway" value="one-way" required="required" onchange="this.form.()">
+                                                    <input type="radio" name="trip" id="oneway" value="one-way" required="required">
                                                 </div>
                                             </div>
                                         </div>
@@ -46,7 +40,7 @@
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="from">From:</label>
-                                            <select required="" name="from" onchange="this.form.()">
+                                            <select required="" name="from">
                                                 <option value="">Select a location...</option>
                                                 <option value="Cambodia">Cambodia</option>
                                             </select>
@@ -55,7 +49,7 @@
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="to">To:</label>
-                                            <select required="" name="to" onchange="this.form.()">
+                                            <select required="" name="to">
                                                 <option value="">Select a location...</option>
                                                 <option value="Cambodia">Cambodia</option>
                                                 <option value="Hong Kong">Hong Kong</option>
@@ -65,13 +59,13 @@
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="departure">Out Bound:</label>
-                                            <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Select date..." required="" onchange="this.form.()">
+                                            <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Select date..." required="">
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="return">Return:</label>
-                                            <input name="return" type="text" class="form-control date" id="return" placeholder="Select date..." required="" onchange="this.form.()" disabled="true">
+                                            <input name="return" type="text" class="form-control date" id="return" placeholder="Select date..." required=""  disabled="true">
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
@@ -95,7 +89,7 @@
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="0-2 Years">Passengers (0-2 Years):</label>
-                                            <select required="" name="0-2 Years" onchange="this.form.()">
+                                            <select required="" name="0-2 Years">
                                                 <option value="">Select a Passengers...</option>
                                                 <?php for($i=1; $i<=10; $i++) { ?>
                                                 <option value="<?= $i; ?>"><?= $i; ?></option>
@@ -107,7 +101,7 @@
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for=">2 Years">Passengers (>2 Years):</label>
-                                            <select required="" name=">2 Years" onchange="this.form.()">
+                                            <select required="" name=">2 Years">
                                                 <option value="">Select a Passengers...</option>
                                                 <?php for($i=1; $i<=10; $i++) { ?>
                                                 <option value="<?= $i; ?>"><?= $i; ?></option>
@@ -117,7 +111,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" class="btn">Order Ticket Now</button>
+                                            <!--<button type="submit" id="form-submit" class="btn">Order Ticket Now</button>-->
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <button type="submit" data-next-form='2' id="form-submit" class="btn nextbtn">Next</button>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -126,7 +125,7 @@
                         
                         <!--Step 2-->
                         
-                        <div class="submit-form form2">
+                        <div class="submit-form form2 hidden">
                             <h4>Bus Selection:</h4>
                             <form id="form-submit" action="" method="get">
                                 <div class="row">
@@ -204,7 +203,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" class="btn">Order Ticket Now</button>
+                                            <button type="submit" id="form-submit" data-prev-form='1' class="btn prevbtn">Prev</button>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <button type="submit" id="form-submit" data-next-form='3' class="btn nextbtn">Next</button>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -213,7 +217,7 @@
                         
                         <!--Step 3-->
                         
-                        <div class="submit-form form3">
+                        <div class="submit-form form3 hidden">
                             <h4>Bus OutBound:</h4>
                             <form id="form-submit" action="" method="get">
                                 <div class="row">
@@ -337,7 +341,12 @@
                                    
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" class="btn">Order Ticket Now</button>
+                                            <button type="submit" id="form-submit" data-prev-form='2' class="btn prevbtn">Prev</button>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <button type="submit" id="form-submit" data-next-form='4' class="btn nextbtn">Next</button>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -346,7 +355,7 @@
                         
                          <!--Step 4-->
                         
-                        <div class="submit-form form4">
+                        <div class="submit-form form4 hidden">
                             <h4>Confirmation:</h4>
                             <form id="form-submit" action="" method="get">
                                 <div class="row">
@@ -428,7 +437,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" class="btn">Order Ticket Now</button>
+                                            <button type="submit" id="form-submit" data-prev-form='3' class="btn prevbtn">Prev</button>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <fieldset>
+                                            <button type="submit" id="form-submit"  class="btn">Finish</button>
                                         </fieldset>
                                     </div>
                                 </div>

@@ -16,6 +16,7 @@ class Account extends CI_Controller {
     }
 
     function home() {
+        
         $data['page'] = "front/home/home";
         $data['var_meta_title'] = 'home';
         $data['var_meta_description'] = 'home';

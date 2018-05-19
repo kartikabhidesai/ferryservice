@@ -86,7 +86,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 define('ADMIN_LAYOUT', 'admin/app');
 define('ADMIN_LAYOUT_LOGIN', 'login/app');
-define('FRONT_LAYOUT', 'front/app');
+define('FRONT_LAYOUT', 'front/layout/app');
 
 /* Email Setting constatnts */
 define("SMTP_HOST", "smtpout.secureserver.net");
