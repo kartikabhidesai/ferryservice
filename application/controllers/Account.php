@@ -12,7 +12,25 @@ class Account extends CI_Controller {
     }
 
     function index() {
-        $this->login();
+        
+        $data['page'] = "front/home/index";
+        $data['var_meta_title'] = 'login';
+        $data['var_meta_description'] = 'login';
+        $data['var_meta_keyword'] = 'login';
+        $data['js'] = array(
+            'front/home.js'
+        );
+        $data['js_plugin'] = array(
+        );
+        $data['css'] = array(
+        );
+        $data['css_plugin'] = array(
+        );
+        $data['init'] = array(
+            'Home.init()'
+        );
+       
+        $this->load->view(FRONT_LAYOUT, $data);
     }
 
     function home() {

@@ -11,12 +11,13 @@
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <section id="first-tab-group" class="tabgroup">
+                    <form method='post' action='' id='bookticket'>
                     <div id="tab1">
                         <!--Step 1-->
                         
                         <div class="submit-form form1 ">
                             <h4>Trip Selection:</h4>
-                            <form id="form-submit" action="" method="get">
+                            
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-6">
@@ -24,11 +25,11 @@
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <label for="round">Round</label>
-                                                    <input type="radio" name="trip" id="round" value="round" required="required">
+                                                    <input type="radio" name="trip" id="round" value="round" checked='checked'>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <label for="oneway">Oneway</label>
-                                                    <input type="radio" name="trip" id="oneway" value="one-way" required="required">
+                                                    <input type="radio" name="trip" id="oneway" value="one-way">
                                                 </div>
                                             </div>
                                         </div>
@@ -40,7 +41,7 @@
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="from">From:</label>
-                                            <select required="" name="from">
+                                            <select name="fromstaton">
                                                 <option value="">Select a location...</option>
                                                 <option value="Cambodia">Cambodia</option>
                                             </select>
@@ -49,7 +50,7 @@
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="to">To:</label>
-                                            <select required="" name="to">
+                                            <select  name="to">
                                                 <option value="">Select a location...</option>
                                                 <option value="Cambodia">Cambodia</option>
                                                 <option value="Hong Kong">Hong Kong</option>
@@ -120,14 +121,14 @@
                                         </fieldset>
                                     </div>
                                 </div>
-                            </form>
+                            
                         </div>
                         
                         <!--Step 2-->
                         
                         <div class="submit-form form2 hidden">
                             <h4>Bus Selection:</h4>
-                            <form id="form-submit" action="" method="get">
+                          
                                 <div class="row">
                                     
                                     <div class="col-md-6">
@@ -212,14 +213,14 @@
                                         </fieldset>
                                     </div>
                                 </div>
-                            </form>
+                          
                         </div>
                         
                         <!--Step 3-->
                         
                         <div class="submit-form form3 hidden">
                             <h4>Bus OutBound:</h4>
-                            <form id="form-submit" action="" method="get">
+                          
                                 <div class="row">
                                     
                                     <div class="col-md-4">
@@ -350,14 +351,14 @@
                                         </fieldset>
                                     </div>
                                 </div>
-                            </form>
+                           
                         </div>
                         
                          <!--Step 4-->
                         
                         <div class="submit-form form4 hidden">
                             <h4>Confirmation:</h4>
-                            <form id="form-submit" action="" method="get">
+                            
                                 <div class="row">
                                     
                                     <div class="col-md-4">
@@ -446,9 +447,10 @@
                                         </fieldset>
                                     </div>
                                 </div>
-                            </form>
+                           
                         </div>
                     </div>
+                    </form>
                 </section>
             </div>
         </div>

@@ -31,10 +31,6 @@ class Homepage extends CI_Controller {
         $this->load->view(FRONT_LAYOUT, $data);
     }
 
-    public function dd()
-    {
-        echo 'dd';exit;
-    }
     
 }
 

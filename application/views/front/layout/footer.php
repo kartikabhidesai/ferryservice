@@ -4,6 +4,12 @@
 <script src="<?= base_url()?>public/asset/front/js/plugins.js"></script>
 <script src="<?= base_url()?>public/asset/front/js/main.js"></script>
 <script src="<?= base_url()?>public/asset/front/js/common.js"></script>
+<script src="<?= base_url()?>public/asset/front/js/vendor/jquery.validate.min.js" type="text/javascript"></script>
+<script src="<?= base_url()?>public/asset/front/js/vendor/toastr.min.js" type="text/javascript"></script>
+<script src="<?= base_url()?>public/asset/front/js/vendor/inspinia.js" type="text/javascript"></script>
+<script src="<?= base_url()?>public/asset/front/js/vendor/comman_function.js" type="text/javascript"></script>
+<script src="<?= base_url()?>public/asset/front/js/vendor/ajaxfileupload.js" type="text/javascript"></script>
+<script src="<?= base_url()?>public/asset/front/js/vendor/jquery.form.min.js" type="text/javascript"></script>
 <?php
 if (!empty($js)){ 
  foreach ($js as $value){ ?>
