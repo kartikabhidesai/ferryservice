@@ -16,10 +16,6 @@ class Account extends CI_Controller {
         $this->login();
     }
 
-    function zz() {
-        
-        echo 'zz';
-    }
     function home() {
         
         $data['page'] = "front/home/home";
@@ -46,6 +42,7 @@ class Account extends CI_Controller {
     }
     
     function login() {
+        
         $data['page'] = "front/login";
         $data['var_meta_title'] = 'login';
         $data['var_meta_description'] = 'login';

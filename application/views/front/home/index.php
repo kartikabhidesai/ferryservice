@@ -25,11 +25,11 @@
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <label for="round">Round</label>
-                                                    <input type="radio" name="trip" id="round" value="round" checked='checked'>
+                                                    <input type="radio" class="tripSelection" name="trip" id="round" value="round" checked='checked'>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                     <label for="oneway">Oneway</label>
-                                                    <input type="radio" name="trip" id="oneway" value="one-way">
+                                                    <input type="radio" class="tripSelection" name="trip" id="oneway" value="one-way">
                                                 </div>
                                             </div>
                                         </div>
@@ -41,50 +41,55 @@
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="from">From:</label>
-                                            <select name="fromstaton">
+                                            <select name="fromstaton" class="tripFrom">
                                                 <option value="">Select a location...</option>
-                                                <option value="Cambodia">Cambodia</option>
+                                                <option value="Dahej">Dahej</option>
+                                                <option value="Ghogha">Ghogha</option>
                                             </select>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="to">To:</label>
-                                            <select  name="to">
+                                            <select name="to" class="tripTo">
                                                 <option value="">Select a location...</option>
-                                                <option value="Cambodia">Cambodia</option>
-                                                <option value="Hong Kong">Hong Kong</option>
+                                                <option value="Dahej">Dahej</option>
+                                                <option value="Ghogha">Ghogha</option>
                                             </select>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="departure">Out Bound:</label>
-                                            <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Select date..." required="">
+                                            <input name="deparure" type="text" class="form-control date onewayTrip" id="deparure" placeholder="Select date...">
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="return">Return:</label>
-                                            <input name="return" type="text" class="form-control date" id="return" placeholder="Select date..." required=""  disabled="true">
+                                            <input name="return" type="text" class="form-control date roundTrip" id="return" placeholder="Select date...">
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label>Trip (Out Bound):</label>
                                             <br/><br/>
-                                            <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
-                                            <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
-                                            <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
+                                            <div class="ticketOneway">
+                                                <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
+                                                <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
+                                                <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
+                                            </div>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label>Trip (Return):</label>
                                             <br/><br/>
-                                            <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
-                                            <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
-                                            <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
+                                            <div class="ticketRound">
+                                                <button class="btn btn-default cusClass roundTicket">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
+                                                <button class="btn btn-default cusClass roundTicket">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
+                                                <button class="btn btn-default cusClass roundTicket">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
+                                            </div>                                            
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
@@ -486,7 +491,7 @@
                                                     <div class="weather-item">
                                                         <h6>Myanmar</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-03.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-03.png" alt="">
                                                         </div>
                                                         <span>32&deg;C</span>
                                                         <ul class="time-weather">
@@ -501,7 +506,7 @@
                                                     <div class="weather-item">
                                                         <h6>Thailand</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-02.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-02.png" alt="">
                                                         </div>
                                                         <span>28&deg;C</span>
                                                         <ul class="time-weather">
@@ -516,7 +521,7 @@
                                                     <div class="weather-item">
                                                         <h6>India</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-01.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-01.png" alt="">
                                                         </div>
                                                         <span>33&deg;C</span>
                                                         <ul class="time-weather">
@@ -535,7 +540,7 @@
                                                     <div class="weather-item">
                                                         <h6>Myanmar</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-02.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-02.png" alt="">
                                                         </div>
                                                         <span>28&deg;C</span>
                                                         <ul class="time-weather">
@@ -550,7 +555,7 @@
                                                     <div class="weather-item">
                                                         <h6>Thailand</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-03.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-03.png" alt="">
                                                         </div>
                                                         <span>31&deg;C</span>
                                                         <ul class="time-weather">
@@ -565,7 +570,7 @@
                                                     <div class="weather-item">
                                                         <h6>India</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-01.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-01.png" alt="">
                                                         </div>
                                                         <span>26&deg;C</span>
                                                         <ul class="time-weather">
@@ -584,7 +589,7 @@
                                                     <div class="weather-item">
                                                         <h6>Myanmar</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-03.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-03.png" alt="">
                                                         </div>
                                                         <span>31&deg;C</span>
                                                         <ul class="time-weather">
@@ -599,7 +604,7 @@
                                                     <div class="weather-item">
                                                         <h6>Thailand</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-01.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-01.png" alt="">
                                                         </div>
                                                         <span>34&deg;C</span>
                                                         <ul class="time-weather">
@@ -614,7 +619,7 @@
                                                     <div class="weather-item">
                                                         <h6>India</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-02.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-02.png" alt="">
                                                         </div>
                                                         <span>28&deg;C</span>
                                                         <ul class="time-weather">
@@ -633,7 +638,7 @@
                                                     <div class="weather-item">
                                                         <h6>Myanmar</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-01.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-01.png" alt="">
                                                         </div>
                                                         <span>27&deg;C</span>
                                                         <ul class="time-weather">
@@ -648,7 +653,7 @@
                                                     <div class="weather-item">
                                                         <h6>Thailand</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-02.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-02.png" alt="">
                                                         </div>
                                                         <span>28&deg;C</span>
                                                         <ul class="time-weather">
@@ -663,7 +668,7 @@
                                                     <div class="weather-item">
                                                         <h6>India</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-03.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-03.png" alt="">
                                                         </div>
                                                         <span>31&deg;C</span>
                                                         <ul class="time-weather">
@@ -682,7 +687,7 @@
                                                     <div class="weather-item">
                                                         <h6>Myanmar</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-03.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-03.png" alt="">
                                                         </div>
                                                         <span>33&deg;C</span>
                                                         <ul class="time-weather">
@@ -697,7 +702,7 @@
                                                     <div class="weather-item">
                                                         <h6>Thailand</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-02.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-02.png" alt="">
                                                         </div>
                                                         <span>31&deg;C</span>
                                                         <ul class="time-weather">
@@ -712,7 +717,7 @@
                                                     <div class="weather-item">
                                                         <h6>India</h6>
                                                         <div class="weather-icon">
-                                                            <img src="img/weather-icon-01.png" alt="">
+                                                            <img src="<?php echo base_url()?>public/asset/front/img/weather-icon-01.png" alt="">
                                                         </div>
                                                         <span>28&deg;C</span>
                                                         <ul class="time-weather">
@@ -803,7 +808,7 @@
                                         <div id="owl-suiteroom" class="owl-carousel owl-theme">
                                             <div class="item">
                                                 <div class="suiteroom-item">
-                                                    <img src="img/suite-02.jpg" alt="">
+                                                    <img src="<?php echo base_url()?>public/asset/front/img/suite-02.jpg" alt="">
                                                     <div class="text-content">
                                                         <h4>Clean And Relaxing Room</h4>
                                                         <span>Aurora Resort</span>
@@ -812,7 +817,7 @@
                                             </div>
                                             <div class="item">
                                                 <div class="suiteroom-item">
-                                                    <img src="img/suite-01.jpg" alt="">
+                                                    <img src="<?php echo base_url()?>public/asset/front/img/suite-01.jpg" alt="">
                                                     <div class="text-content">
                                                         <h4>Special Suite Room TV</h4>
                                                         <span>Khao Yai Hotel</span>
@@ -821,7 +826,7 @@
                                             </div>
                                             <div class="item">
                                                 <div class="suiteroom-item">
-                                                    <img src="img/suite-03.jpg" alt="">
+                                                    <img src="<?php echo base_url()?>public/asset/front/img/suite-03.jpg" alt="">
                                                     <div class="text-content">
                                                         <h4>The Best Sitting</h4>
                                                         <span>Hotel Grand</span>
@@ -833,7 +838,7 @@
                                 </div>
                             </div>
                             <div id="swimingpool">
-                                <img src="img/swiming-pool.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/swiming-pool.jpg" alt="">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="text-content">
@@ -844,7 +849,7 @@
                                 </div>
                             </div>
                             <div id="massage">
-                                <img src="img/massage-service.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/massage-service.jpg" alt="">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="text-content">
@@ -855,7 +860,7 @@
                                 </div>
                             </div>
                             <div id="fitness">
-                                <img src="img/fitness-service.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/fitness-service.jpg" alt="">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="text-content">
@@ -866,7 +871,7 @@
                                 </div>
                             </div>
                             <div id="event">
-                                <img src="img/evening-event.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/evening-event.jpg" alt="">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="text-content">
@@ -898,7 +903,7 @@
                     <div id="owl-mostvisited" class="owl-carousel owl-theme">
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-01.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-01.jpg" alt="">
                                 <div class="text-content">
                                     <h4>River Views</h4>
                                     <span>New York</span>
@@ -907,7 +912,7 @@
                         </div>
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-02.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-02.jpg" alt="">
                                 <div class="text-content">
                                     <h4>Lorem ipsum dolor</h4>
                                     <span>Tokyo</span>
@@ -916,7 +921,7 @@
                         </div>
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-03.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-03.jpg" alt="">
                                 <div class="text-content">
                                     <h4>Proin dignissim</h4>
                                     <span>Paris</span>
@@ -925,7 +930,7 @@
                         </div>
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-04.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-04.jpg" alt="">
                                 <div class="text-content">
                                     <h4>Fusce sed ipsum</h4>
                                     <span>Hollywood</span>
@@ -934,7 +939,7 @@
                         </div>
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-02.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-02.jpg" alt="">
                                 <div class="text-content">
                                     <h4>Vivamus egestas</h4>
                                     <span>Tokyo</span>
@@ -943,7 +948,7 @@
                         </div>
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-01.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-01.jpg" alt="">
                                 <div class="text-content">
                                     <h4>Aliquam elit metus</h4>
                                     <span>New York</span>
@@ -952,7 +957,7 @@
                         </div>
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-03.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-03.jpg" alt="">
                                 <div class="text-content">
                                     <h4>Phasellus pharetra</h4>
                                     <span>Paris</span>
@@ -961,7 +966,7 @@
                         </div>
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-04.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-04.jpg" alt="">
                                 <div class="text-content">
                                     <h4>In in quam efficitur</h4>
                                     <span>Hollywood</span>
@@ -970,7 +975,7 @@
                         </div>
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-01.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-01.jpg" alt="">
                                 <div class="text-content">
                                     <h4>Sed faucibus odio</h4>
                                     <span>NEW YORK</span>
@@ -979,7 +984,7 @@
                         </div>
                         <div class="item col-md-12">
                             <div class="visited-item">
-                                <img src="img/place-02.jpg" alt="">
+                                <img src="<?php echo base_url()?>public/asset/front/img/place-02.jpg" alt="">
                                 <div class="text-content">
                                     <h4>Donec varius porttitor</h4>
                                     <span>Tokyo</span>

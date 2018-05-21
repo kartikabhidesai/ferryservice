@@ -18,11 +18,11 @@ class Homepage extends CI_Controller {
         $data['js'] = array(
             'front/home.js'
         );
-        $data['js_plugin'] = array(
-        );
-        $data['css'] = array(
-        );
+        $data['js_plugin'] = array();
+        
+        $data['css'] = array();
         $data['css_plugin'] = array(
+            
         );
         $data['init'] = array(
             'Home.init()'
