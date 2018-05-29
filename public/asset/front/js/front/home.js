@@ -1,14 +1,38 @@
 var Home = function(){
     var mainForm = function(){
-        
-        var form = $('#bookticket');
-        var rules = {
-            fromstaton: {required: true}
+         $('#bookticket').validate({
+            rules: {
+               fromstaton: {required: true},
+               tostation: {required: true},
+               depature: {required: true},
+               return: {required: {depends: function (e) {
+                            return ($('input[name="trip"]').val !== 'round');
+                    }}},
+            },
+            messages: {
+                fromstaton: {
+                    required: "please select from station"
+                },
+                tostation: {
+                    required: "please select to station"
+                },
+                depature: {
+                    required: "please select to depature"
+                },
+                return: {
+                    required: "please select to return"
+                },
+            },
             
-        };
-        handleFormValidate(form, rules, function(form) {
-            handleAjaxFormSubmit(form,true);
         });
+//        var form = $('#bookticket');
+//        var rules = {
+//            fromstaton: {required: true}
+//            
+//        };
+//        handleFormValidate(form, rules, function(form) {
+//            handleAjaxFormSubmit(form,true);
+//        });
         
 //        $('body').on('click','.nextbtn',function(){
 //            var nextForm = $(this).attr('data-next-form');
@@ -57,6 +81,7 @@ var Home = function(){
         }).on('changeDate',function(e){
             var html = ticketSelection(e.date);
             $('.ticketOneway').html(html);
+            $('.less2years').trigger('change');
         });
         $('#return').datepicker({
             startDate: date,
@@ -64,6 +89,36 @@ var Home = function(){
             var html = ticketSelection(e.date);
             $('.ticketRound').html(html);
         });
+        
+        $('body').on('click','.selectTrip',function(){
+          
+           $(this).parents('fieldset').find('.selectTrip').removeClass('active');
+           $(this).addClass('active');
+           var time = $(this).attr('data-time');
+           var price = $(this).attr('data-price');
+       
+           $(this).parents('fieldset').find('.tripPrice').val(price);
+           $(this).parents('fieldset').find('.tripTime').val(time);
+        });
+        
+        $('body').on('change','.less2years',function(){
+            if($( ".more2years" ).val() == ''){
+                $( this ).rules( "add", {
+                required : true
+              });
+            $( ".more2years" ).rules( "remove" );
+            }
+            
+        })
+        $('body').on('change','.more2years',function(){
+            if($( ".less2years" ).val() == ''){
+                $( this ).rules( "add", {
+                required : true
+              });
+            $( ".less2years" ).rules( "remove" );
+            }
+            
+        })
     }
     
     function ticketSelection(selectDate){
@@ -74,9 +129,9 @@ var Home = function(){
         
         var html = '';
         if(todayDate == selectedDate){
-            html = "<button class='btn btn-default cusClass' disabled>09:30 AM<span class='price'><i class='fa fa-rupee'></i>500</span></button><button class='btn btn-default cusClass' disabled>02:30 PM<span class='price'><i class='fa fa-rupee'></i>500</span></button>";
+            html = "<button type='button' class='btn btn-default cusClass' disabled>09:30 AM<span class='price'><i class='fa fa-rupee'></i>500</span></button><button type='button' class='btn btn-default cusClass' disabled>02:30 PM<span class='price'><i class='fa fa-rupee'></i>500</span></button>";
         }else{
-            html = "<button class='btn btn-default cusClass'>09:30 AM<span class='price'><i class='fa fa-rupee'></i>500</span></button><button class='btn btn-default cusClass'>02:30 PM<span class='price'><i class='fa fa-rupee'></i>500</span></button>";
+            html = "<button type='button' class='btn btn-default cusClass selectTrip' data-time='09:30 AM' data-price='500'>09:30 AM<span class='price'><i class='fa fa-rupee'></i>500</span></button><button type='button' class='btn btn-default cusClass selectTrip' data-time='02:30 PM' data-price='500'>02:30 PM<span class='price'><i class='fa fa-rupee'></i>500</span></button>";
         }
         return html;
     }
