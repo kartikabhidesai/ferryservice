@@ -25,27 +25,27 @@ var Home = function(){
             },
             
         });
-//        var form = $('#bookticket');
-//        var rules = {
-//            fromstaton: {required: true}
-//            
-//        };
-//        handleFormValidate(form, rules, function(form) {
-//            handleAjaxFormSubmit(form,true);
-//        });
+        var form = $('#bookticket');
+        var rules = {
+            fromstaton: {required: true}
+            
+        };
+        handleFormValidate(form, rules, function(form) {
+            handleAjaxFormSubmit(form,true);
+        });
         
-//        $('body').on('click','.nextbtn',function(){
-//            var nextForm = $(this).attr('data-next-form');
-//           
-//           $('.submit-form').addClass('hidden');
-//           $('.form'+nextForm).removeClass('hidden');
-//        });
-//        $('body').on('click','.prevbtn',function(){
-//            var nextForm = $(this).attr('data-prev-form');
-//           
-//           $('.submit-form').addClass('hidden');
-//           $('.form'+nextForm).removeClass('hidden');
-//        });
+        $('body').on('click','.nextbtn',function(){
+            var nextForm = $(this).attr('data-next-form');
+           
+           $('.submit-form').addClass('hidden');
+           $('.form'+nextForm).removeClass('hidden');
+        });
+        $('body').on('click','.prevbtn',function(){
+            var nextForm = $(this).attr('data-prev-form');
+           
+           $('.submit-form').addClass('hidden');
+           $('.form'+nextForm).removeClass('hidden');
+        });
     }
     
     var handleGenral = function (){
@@ -63,14 +63,16 @@ var Home = function(){
         });
         
         $('body').on('change','.tripFrom',function(){
-            var value = $(this).val();
-            $(".tripTo option[value='" + value + "']").attr("disabled","disabled");
+            var selectedValue = $(this).val();
+           $(".tripTo option").remove();
+           $(".tripFrom option").each(function()
+            {
+                if($(this).val() != '' && $(this).val() != selectedValue)
+                {
+                    $('.tripTo').append($('<option>', {value:$(this).val(), text:$(this).text()}));
+                }
+            });
            
-        });
-        
-        $('body').on('change','.tripTo',function(){
-            var value = $(this).val();
-            $(".tripFrom option[value='" + value + "']").attr("disabled","disabled");
         });
         
         var date = new Date();
@@ -79,6 +81,10 @@ var Home = function(){
         $('#deparure').datepicker({
             startDate: date,
         }).on('changeDate',function(e){
+            var postData = {fromDate:e.date};
+            ajaxcall(baseurl +'trip-detail',postData,function(data){
+                //alert(data);
+            });
             var html = ticketSelection(e.date);
             $('.ticketOneway').html(html);
             $('.less2years').trigger('change');

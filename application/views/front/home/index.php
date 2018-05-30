@@ -55,8 +55,10 @@
                                                 <label for="from">From:</label>
                                                 <select name="fromstaton" class="tripFrom">
                                                     <option value="">Select a location...</option>
-                                                    <option value="Dahej">Dahej</option>
-                                                    <option value="Ghogha">Ghogha</option>
+                                                    <?php for($i=0;$i<count($getStop);$i++){ ?>
+                                                    <option value="<?php echo $getStop[$i]['stationID']; ?>"><?php echo $getStop[$i]['stationName']; ?></option>
+                                                    <?php } ?>
+                                                    
                                                 </select>
                                                 <label for="fromstaton" class="error"></label>
                                             </fieldset>
@@ -66,8 +68,7 @@
                                                 <label for="to">To:</label>
                                                 <select name="tostation" class="tripTo">
                                                     <option value="">Select a location...</option>
-                                                    <option value="Dahej">Dahej</option>
-                                                    <option value="Ghogha">Ghogha</option>
+                                                    
                                                 </select>
                                                 <label for="tostation" class="error"></label>
                                             </fieldset>

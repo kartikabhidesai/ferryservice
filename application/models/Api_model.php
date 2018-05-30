@@ -12,7 +12,7 @@ class Api_model extends CI_Model {
         
         $headerArr = implode(',', $header);
         $curl = curl_init();
-echo $headerArr;
+
         curl_setopt_array($curl, array(
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,

@@ -31,7 +31,7 @@ class ApiController extends CI_Controller {
     function getTrips() {
 
         $data = "";
-         $token = $this->session->userdata('token');
+        $token = $this->session->userdata('token');
         $url = "http://indigo.kcits.in/api/api/GetTrips?departureDate=31/05/2018&destinationID=2&sourceID=1";
         $header = array('authorization: '.$token);
         $result = $this->Api_model->curlCall($url, $data, 'GET',$header);
