@@ -102,6 +102,7 @@
                                                     <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
                                                     <button class="btn btn-default cusClass">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
                                                 </div>
+                                                <label class="error one_way_trip"></label>
                                             </fieldset>
                                         </div>
                                         <div class="col-md-6">
@@ -114,7 +115,8 @@
                                                     <button class="btn btn-default cusClass roundTicket">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
                                                     <button class="btn btn-default cusClass roundTicket">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
                                                     <button class="btn btn-default cusClass roundTicket">00:00:00<span class="price"><i class="fa fa-rupee"></i>0</span></button>
-                                                </div>                                            
+                                                </div>
+                                                <label class="error round_way_trip"></label>
                                             </fieldset>
                                         </div>
                                     </div>
