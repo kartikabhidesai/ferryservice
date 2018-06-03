@@ -22,8 +22,13 @@
                 </div>
             </div>
             <div class="col-md-8 col-md-offset-2">
+                <?php if(($this->session->flashdata('success'))){ ?>
+                    <div class="alert alert-success">
+                        <strong>Success!</strong> <?php echo $this->session->flashdata('success'); ?>.
+                     </div>
+                <?php } ?>
                 <section id="first-tab-group" class="tabgroup">
-                    <form method='post' action='' id='bookticket'>
+                    <form method='post' action='submit-booking' id='bookticket'>
                         <div id="tab1">
                             <!--Step 1-->
 
@@ -53,7 +58,7 @@
                                         <div class="col-md-6">
                                             <fieldset>
                                                 <label for="from">From:</label>
-                                                <select name="fromstaton" class="tripFrom">
+                                                <select name="fromstaton" class="tripFrom fromstaton">
                                                     <option value="">Select a location...</option>
                                                     <?php for($i=0;$i<count($getStop);$i++){ ?>
                                                     <option value="<?php echo $getStop[$i]['stationID']; ?>"><?php echo $getStop[$i]['stationName']; ?></option>
@@ -66,7 +71,7 @@
                                         <div class="col-md-6">
                                             <fieldset>
                                                 <label for="to">To:</label>
-                                                <select name="tostation" class="tripTo">
+                                                <select name="tostation" class="tripTo tostation">
                                                     <option value="">Select a location...</option>
                                                     
                                                 </select>
@@ -85,7 +90,7 @@
                                         <div class="col-md-6">
                                             <fieldset>
                                                 <label for="return">Return:</label>
-                                                <input name="return" type="text" class="form-control date roundTrip" id="return" placeholder="Select date...">
+                                                <input name="returntrip" type="text" class="form-control date roundTrip" id="return" placeholder="Select date...">
                                                 <label for="return" class="error"></label>
                                             </fieldset>
                                         </div>
@@ -153,7 +158,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" data-next-form='2' id="form-submit" class="btn nextbtn">Next</button>
+                                            <button type="button" data-next-form='2' id="form-submit" class="btn nextbtn">Next</button>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -169,9 +174,9 @@
 
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <label for="from">Date : 18/05/2018</label>
+                                            <label for="from">Date : <span class="fromDate">18/05/2018</span></label>
                                             <br/><br/>
-                                            <label for="from">Route : Dahej-Ghogha</label>
+                                            <label for="from">Route : <span class="route">Dahej-Ghogha</span></label>
 
                                         </fieldset>
                                     </div>
@@ -179,9 +184,9 @@
 
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <label for="to">Trip Time : 02:30 PM</label>
+                                            <label for="to">Trip Time : <span class="tripstartTime">02:30 PM</span></label>
                                             <br/><br/>
-                                            <label for="to">Passengers : 13</label>
+                                            <label for="to">Passengers : <span class="passengers">13</span></label>
                                         </fieldset>
                                     </div>
 
@@ -196,12 +201,12 @@
                                         <div class="radio-select">
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                                    <label for="round">Avail Bus Services</label>
-                                                    <input type="radio" name="trip" id="round" value="round" required="required" onchange="this.form.()">
+                                                    <label for="busservices">Avail Bus Services</label>
+                                                    <input type="radio" name="pickupservices" id="busservices" value="busservices"  checked="checked">
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                                    <label for="oneway">Self-Transportation</label>
-                                                    <input type="radio" name="trip" id="oneway" value="one-way" required="required" onchange="this.form.()">
+                                                    <label for="transportation">Self-Transportation</label>
+                                                    <input type="radio" name="pickupservices" id="transportation" value="selfservices"  >
                                                 </div>
                                             </div>
                                         </div>
@@ -211,24 +216,18 @@
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="pickpoint">Pick Point:</label>
-                                            <select required="" name="pickpoint" onchange="this.form.()">
+                                            <select required="" name="pickpoint" class="pickpoint">
                                                 <option value="">Select a Pick Point...</option>
-                                                <option value="Abc1">Abc1</option>
-                                                <option value="Abc2">Abc2</option>
-                                                <option value="Abc3">Abc3</option>
-                                                <option value="Abc4">Abc4</option>
+                                                
                                             </select>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
                                             <label for="droppoint">Drop Point:</label>
-                                            <select required="" name="droppoint" onchange="this.form.()">
-                                                <option value="">Select a Pick Point...</option>
-                                                <option value="Abc1">Abc1</option>
-                                                <option value="Abc2">Abc2</option>
-                                                <option value="Abc3">Abc3</option>
-                                                <option value="Abc4">Abc4</option>
+                                            <select required="" name="droppoint" class="droppoint">
+                                                <option value="">Select a Drop Point...</option>
+                                               
                                             </select>
                                         </fieldset>
                                     </div>
@@ -240,12 +239,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" data-prev-form='1' class="btn prevbtn">Prev</button>
+                                            <button type="button" id="form-submit" data-prev-form='1' class="btn prevbtn">Prev</button>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" data-next-form='3' class="btn nextbtn">Next</button>
+                                            <button type="button" id="form-submit" data-next-form='3' class="btn nextbtn">Next</button>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -258,41 +257,35 @@
                                 <h4>Bus OutBound:</h4>
 
                                 <div class="row">
-
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <fieldset>
-                                            <label for="from">Date : 18/05/2018</label>
+                                            <label for="from">Date : <span class="fromDate">18/05/2018</span></label>
                                             <br/><br/>
-                                            <label for="from">Route : Dahej-Ghogha</label>
+                                            <label for="from">Route : <span class="route">Dahej-Ghogha</span></label>
 
                                         </fieldset>
                                     </div>
 
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <fieldset>
-                                            <label for="to">Trip Time : 02:30 PM</label>
+                                            <label for="to">Trip Time : <span class="tripstartTime">02:30 PM</span></label>
                                             <br/><br/>
-                                            <label for="to">Passengers : 13</label>
+                                            <label for="to">Passengers : <span class="passengers">13</span></label>
                                         </fieldset>
                                     </div>
-
-                                    <div class="col-md-4">
-                                        <fieldset>
-                                            <label for="to">Total Seats : 2</label>
-                                            <br/><br/>
-                                            <label for="to">-</label>
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-md-12">
+                                    
+                                    <div class="passangerDetail"></div>
+                                    
+                                    <div class="pessngerSample" style="display: none;">
+                                        <div class="col-md-12 main-div-@">
                                         <hr style="border-top: 1px solid #dbdada;">
-                                        <label for="primary_passanger">Primary Passenger:</label>
+                                        <label for="primary_passanger"> Passenger Detail :</label>
                                         <br/><br/>
                                         <div class="col-md-2">
                                             <fieldset>
 
-                                                <select required="" name="primary_passanger" style="margin-top: 12px;" onchange="this.form.()">
+                                                <select required="" name="passanger_title_@" style="margin-top: 12px;">
                                                     <option value="Mr.">Mr.</option>
                                                     <option value="Ms.">Ms.</option>
                                                     <option value="Mrs.">Mrs.</option>
@@ -301,13 +294,13 @@
                                         </div>
                                         <div class="col-md-4">
                                             <fieldset>
-                                                <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Enetr name..." required="" onchange="this.form.()">
+                                                <input name="pasanger_name_@" type="text" class="form-control pasanger_name_@"  placeholder="Enetr name...">
                                             </fieldset>
                                         </div>
                                         <div class="col-md-2">
                                             <fieldset>
 
-                                                <select required="" name="primary_passanger" onchange="this.form.()" style="margin-top: 12px;">
+                                                <select required="" name="pasanger_age_@" style="margin-top: 12px;">
                                                     <?php for ($i = 3; $i <= 100; $i++) { ?>
                                                         <option value="<?= $i; ?>"><?= $i; ?></option>
                                                     <?php } ?>
@@ -318,71 +311,27 @@
                                             <div class="radio-select">
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6 col-xs-6" style="width:46%">
-                                                        <label for="gender1">Male</label>
-                                                        <input type="radio" name="trip" id="gender1" value="round" required="required" onchange="this.form.()">
+                                                        <label for="gender@">Male</label>
+                                                        <input type="radio" name="pasanger_gender_@" id="gender@" checked="checked" value="male">
                                                     </div>
                                                     <div class="col-md-6 col-sm-6 col-xs-6" style="width:51%">
-                                                        <label for="oneway1">Female</label>
-                                                        <input type="radio" name="trip" id="oneway1" value="one-way" required="required" onchange="this.form.()">
+                                                        <label for="oneway@">Female</label>
+                                                        <input type="radio" name="pasanger_gender_@" id="oneway@" value="female">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <hr style="border-top: 1px solid #dbdada;">
-                                        <label for="primary_passanger">Passanger 2:</label>
-                                        <br/><br/>
-                                        <div class="col-md-2">
-                                            <fieldset>
-
-                                                <select required="" name="primary_passanger" style="margin-top: 12px;" onchange="this.form.()">
-                                                    <option value="Mr.">Mr.</option>
-                                                    <option value="Ms.">Ms.</option>
-                                                    <option value="Mrs.">Mrs.</option>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <fieldset>
-
-                                                <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Enetr name..." required="" onchange="this.form.()">
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <fieldset>
-
-                                                <select required="" name="primary_passanger" onchange="this.form.()" style="margin-top: 12px;">
-                                                    <?php for ($i = 3; $i <= 100; $i++) { ?>
-                                                        <option value="<?= $i; ?>"><?= $i; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </fieldset>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="radio-select">
-                                                <div class="row">
-                                                    <div class="col-md-6 col-sm-6 col-xs-6" style="width:46%">
-                                                        <label for="gender1">Male</label>
-                                                        <input type="radio" name="trip" id="gender1" value="round" required="required" onchange="this.form.()">
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-6 col-xs-6" style="width:51%">
-                                                        <label for="oneway1">Female</label>
-                                                        <input type="radio" name="trip" id="oneway1" value="one-way" required="required" onchange="this.form.()">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div></div>
+                                    
 
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" data-prev-form='2' class="btn prevbtn">Prev</button>
+                                            <button type="button" id="form-submit" data-prev-form='2' class="btn prevbtn">Prev</button>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" data-next-form='4' class="btn nextbtn">Next</button>
+                                            <button type="button" id="form-submit" data-next-form='4' class="btn nextbtn">Next</button>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -396,31 +345,25 @@
 
                                 <div class="row">
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <fieldset>
-                                            <label for="from">Date : 18/05/2018</label>
+                                            <label for="from">Date : <span class="fromDate">18/05/2018</span></label>
                                             <br/><br/>
-                                            <label for="from">Route : Dahej-Ghogha</label>
+                                            <label for="from">Route : <span class="route">Dahej-Ghogha</span></label>
 
                                         </fieldset>
                                     </div>
 
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <fieldset>
-                                            <label for="to">Trip Time : 02:30 PM</label>
+                                            <label for="to">Trip Time : <span class="tripstartTime">02:30 PM</span></label>
                                             <br/><br/>
-                                            <label for="to">Passengers : 13</label>
+                                            <label for="to">Passengers : <span class="passengers">13</span></label>
                                         </fieldset>
                                     </div>
 
-                                    <div class="col-md-4">
-                                        <fieldset>
-                                            <label for="to">Total Seats : 2</label>
-                                            <br/><br/>
-                                            <label for="to">-</label>
-                                        </fieldset>
-                                    </div>
+                                    
 
                                     <div class="col-md-12">
                                         <hr style="border-top: 1px solid #dbdada;">
@@ -428,20 +371,20 @@
                                             <fieldset>
                                                 <label for="email">Email</label>
                                                 <br/><br/>
-                                                <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Enetr name..." required="" onchange="this.form.()">
+                                                <input name="email" type="text" class="form-control emailadd"  placeholder="Enetr name..." >
 
                                             </fieldset>
                                             <fieldset>
                                                 <label for="email">Mobile</label>
                                                 <br/><br/>
-                                                <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Enetr name..." required="" onchange="this.form.()">
+                                                <input name="mobile" type="text" class="form-control mobile-no"  placeholder="Enetr name...">
 
                                             </fieldset>
                                             <fieldset>
                                                 <label for="email">Have a Promo Code?</label>
                                                 <br/><br/>
                                                 <div class="col-md-6" style="margin-top:3px">
-                                                    <input name="deparure" type="text" class="form-control date" id="deparure" placeholder="Enetr name..." required="" onchange="this.form.()">
+                                                    <input name="promocode" type="text" class="form-control" id="deparure" placeholder="Enetr name..." required="">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <button class="btn btn-primary">APPLY</button>
@@ -449,11 +392,11 @@
 
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <label for="gender1">Personal Booking</label>
-                                                    <input type="radio" name="trip" id="gender1" value="round" required="required" onchange="this.form.()">
+                                                    <input type="radio" name="trip" id="gender1" value="round" required="required">
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <label for="oneway1">Corporate Booking</label>
-                                                    <input type="radio" name="trip" id="oneway1" value="one-way" required="required" onchange="this.form.()">
+                                                    <input type="radio" name="trip" id="oneway1" value="one-way" required="required">
                                                 </div>
 
                                             </fieldset>
@@ -478,7 +421,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <fieldset>
-                                            <button type="submit" id="form-submit"  class="btn">Finish</button>
+                                            <button type="submit" id="form-submit" data-next-form='5' class="btn nextbtn">Finish</button>
                                         </fieldset>
                                     </div>
                                 </div>

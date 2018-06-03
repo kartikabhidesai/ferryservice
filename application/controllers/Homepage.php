@@ -44,6 +44,12 @@ class Homepage extends CI_Controller {
         $this->load->view(FRONT_LAYOUT, $data);
     }
 
+    public function submitBooking(){
+        $this->session->set_flashdata('success', 'Your booking is successfully. Your booking id is:'.time());
+        redirect("/");
+        exit;
+    }
+
     public function getToken() {
         $data = "userName=Indigo&password=Indigo%40123&agentID=8ef79695-4fe4-4f10-8065-f81869504685";
         $url = "http://indigo.kcits.in/api/api/Authenticate";
@@ -76,7 +82,56 @@ class Homepage extends CI_Controller {
 
         $data = "";
         $token = $this->session->userdata('token');
-        $url = "http://indigo.kcits.in/api/api/GetTrips?departureDate=31/05/2018&destinationID=2&sourceID=1";
+        $fromDate = date('d/m/Y', strtotime($this->input->post('fromDate')));
+        $fromstaton = $this->input->post('fromstaton');
+        $tostation = $this->input->post('tostation');
+        $url = "http://indigo.kcits.in/api/api/GetTrips?departureDate=$fromDate&destinationID=$tostation&sourceID=$fromstaton";
+        $header = array('authorization: ' . $token);
+        $result = $this->Api_model->curlCall($url, $data, 'GET', $header);
+        if (empty($result['data'])) {
+            echo $result = '{"success": true,"data": [{"tripID": 3419,"tripDate": "31/03/2018","departureTime": "11:00 AM","arrivalTime": "12:00 PM","duration": "60","fromStationName": "Dahej","toStationName": "Ghogha","ferryName": "Live _ferry","amount": 300,"BaseRate": 250,"PercentageOfDayOfDiffrence": 20,"amountOfDayOfDiffrence": 50,"PercentageOfSeatAvailability": 98,"amountOfSeatAvailability": 0,"amountOfNonWindowsSeat": 250,"amountOfWindowsSeat": 0,"amountOfTimeCharge": 0,"noOfSeatAvailability": 128,"isPassed": false,"isSeatLayout": false,"reservedSeats": 0},{"tripID": 3418,"tripDate": "31/03/2018","departureTime": "04:00 PM","arrivalTime": "05:00 PM","duration": "60","fromStationName": "Dahej","toStationName": "Ghogha","ferryName": "Live _ferry","amount": 240,"BaseRate": 200,"PercentageOfDayOfDiffrence": 20,"amountOfDayOfDiffrence": 40,"PercentageOfSeatAvailability": 100,"amountOfSeatAvailability": 0,"amountOfNonWindowsSeat": 200,"amountOfWindowsSeat": 0,"amountOfTimeCharge": 0,"noOfSeatAvailability": 130,"isPassed": false,"isSeatLayout": false,"reservedSeats": 0}],"message": "Success"}';        
+            exit;
+        }
+        echo json_encode($result);
+        exit;
+    }
+
+    public function getSeat() {
+
+        $data = "";
+        $token = $this->session->userdata('token');
+        $url = "http://indigo.kcits.in/api/api/GetSeatLayout?tripID=4624";
+        $header = array('authorization: ' . $token);
+        $result = $this->Api_model->curlCall($url, $data, 'GET', $header);
+        echo json_encode($result);
+        exit;
+    }
+
+    public function blockSeats() {
+        $fields = array(
+            'tripID' => "4624",
+            'seatIDs' => array(3214, 3215),
+            'paxDetails' => array(
+                array('passangerCategoryID' => 1, 'pax' => 0),
+                array('passangerCategoryID' => 1, 'pax' => 0),
+            ),
+        );
+
+        $data = http_build_query($fields);
+
+        $token = $this->session->userdata('token');
+        $url = "http://indigo.kcits.in/api/api/BlockSeats";
+        $header = array('authorization: ' . $token);
+        $result = $this->Api_model->curlCall($url, $data, 'POST', $header);
+        echo json_encode($result);
+        exit;
+    }
+    
+    public function getPickupDetail() {
+        $data = "";
+        $token = $this->session->userdata('token');
+        $url = "http://indigo.kcits.in/api/api/GetBuses?tripID=4624";
+       // http://indigo.kcits.in/api/api/GetBuses?tripID=3418
         $header = array('authorization: ' . $token);
         $result = $this->Api_model->curlCall($url, $data, 'GET', $header);
         echo json_encode($result);
